@@ -1,61 +1,38 @@
 package co.edu.uniquindio.unicine.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Libro implements Serializable {
 
     @Id
+    @EqualsAndHashCode.Include
     private String isbn;
 
+    @Column(nullable = false)
     private String nombre;
 
+    @PositiveOrZero
     private int unidades;
 
+    @PositiveOrZero
     private int anio;
 
-    public Libro() {
-    }
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Genero genero;
 
-    public Libro(String isbn, String nombre, int unidades, int unidades1, int anio) {
-        this.isbn = isbn;
-        this.nombre = nombre;
-        this.unidades = unidades;
-        this.unidades = unidades1;
-        this.anio = anio;
-    }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getUnidades() {
-        return unidades;
-    }
-
-    public void setUnidades(int unidades) {
-        this.unidades = unidades;
-    }
-
-    public int getAnio() {
-        return anio;
-    }
-
-    public void setAnio(int anio) {
-        this.anio = anio;
-    }
 }
