@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.entidades;
 
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,26 +10,33 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
-
+@ToString(callSuper = true)
 public class Cliente extends Persona implements Serializable {
 
-    @Email
-    @Column(length = 150,nullable = false,unique = true)
-    private String email;
+    @Column(nullable = false,length = 200)
+    private String foto_url;
+
+    @Column(nullable = false)
+    private Boolean estado;
 
     @ElementCollection
-    private Map<String, String> telefonos;
+    private List<String> telefonos;
 
-    @ManyToOne
-    private Ciudad ciudad;
-
+    @ToString.Exclude
     @OneToMany(mappedBy = "cliente")
-    private List<Prestamo> prestamos;
+    private List<Cupon> cupones;
 
+    @ToString.Exclude
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
 
+    @Builder
+    public Cliente( String nombre, String correo, String password, String foto_url, List<String> telefonos) {
+        super(nombre, correo, password);
+        this.foto_url = foto_url;
+        this.estado = false;
+        this.telefonos = telefonos;
+
+    }
 }

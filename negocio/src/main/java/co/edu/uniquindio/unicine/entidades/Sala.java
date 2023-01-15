@@ -12,21 +12,29 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Ciudad implements Serializable {
+public class Sala implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int codigo;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String nombre;
 
-    @OneToMany(mappedBy = "ciudad")
-    private List<Teatro> teatros;
+    @OneToMany(mappedBy = "sala")
+    private List<Funcion> funciones;
+
+    @OneToMany(mappedBy = "sala")
+    private List<SillaSala> sillaSalas;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Teatro teatro;
 
     @Builder
-    public Ciudad(String nombre) {
+    public Sala(String nombre, Teatro teatro) {
         this.nombre = nombre;
+        this.teatro = teatro;
     }
 }

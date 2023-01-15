@@ -3,35 +3,33 @@ package co.edu.uniquindio.unicine.entidades;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.io.Serializable;
+import java.util.List;
 
-@MappedSuperclass
-@ToString
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Persona implements Serializable {
+public class AdministradorTeatro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int codigo;
 
-    @Column(nullable = false, length = 100)
-    private String nombre;
-
-    @Email
-    @Column(nullable = false, unique = true,length = 200)
+    @Column(nullable = false,length = 100)
     private String correo;
 
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false, length = 20)
     private String password;
 
-    public Persona(String nombre, String correo, String password) {
-        this.nombre = nombre;
+    @OneToMany(mappedBy = "administrador")
+    private List<Teatro> teatros;
+
+    @Builder
+    public AdministradorTeatro(String correo, String password) {
         this.correo = correo;
         this.password = password;
     }

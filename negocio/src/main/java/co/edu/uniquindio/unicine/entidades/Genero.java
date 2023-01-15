@@ -2,10 +2,11 @@ package co.edu.uniquindio.unicine.entidades;
 
 public enum Genero {
 
-    TERROR,
-    CIENCIAFICCION,
+    ACCION,
+    COMEDIA,
     ROMANCE,
-    NOVELA,
-    ANIME,
-    HISTORIA
+    CIENCIA_FICCION,
+    ANIMADA,
+    DRAMA,
+    TERROR
 }
