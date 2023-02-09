@@ -1,6 +1,5 @@
 package co.edu.uniquindio.unicine.test;
 
-
 import co.edu.uniquindio.unicine.entidades.Cliente;
 import co.edu.uniquindio.unicine.repo.ClienteRepo;
 import org.junit.jupiter.api.Assertions;
@@ -22,13 +21,14 @@ public class ClienteTest {
     private ClienteRepo clienteRepo;
 
     @Test
+    @Sql("classpath:dataset.sql")
     public void registrar(){
 
         ArrayList<String> telefonos = new ArrayList<>();
         telefonos.add("7372403");
         telefonos.add("3128821606");
 
-        Cliente cliente = new Cliente("Alison","alissonej@gmail.com", "123",  "scdsvf.com", telefonos);
+        Cliente cliente = new Cliente("pancha","pancha@gmail.com", "123",  "scdsvf.com", telefonos);
 
         Cliente guardado = clienteRepo.save(cliente);
 
@@ -76,4 +76,3 @@ public class ClienteTest {
     }
 
 }
-

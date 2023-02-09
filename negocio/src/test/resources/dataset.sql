@@ -14,11 +14,11 @@ insert into ciudad values (2,"Pereira");
 insert into ciudad values (3,"Manizalez");
 insert into ciudad values (4,"Cali");
 
-insert into administrador_teatro (1,"admin1@gmail.com", "Admin1", "123");
-insert into administrador_teatro (2,"admin2@gmail.com", "Admin2", "123");
-insert into administrador_teatro (3,"admin3@gmail.com", "Admin3", "123");
+insert into administrador_teatro values (1,"admin1@gmail.com", "123");
+insert into administrador_teatro values (2,"admin2@gmail.com", "123");
+insert into administrador_teatro values (3,"admin3@gmail.com", "123");
 
 insert into teatro values (1,"carrera 14", "12345", 1,1);
 insert into teatro values (2,"carrera 15", "12345", 1,1);
 insert into teatro values (3,"arboleda", "12345", 2,2);
-insert into teatro values (1,"carrera 20", "12345", 3,3);
+insert into teatro values (4,"carrera 20", "12345", 3,3);
