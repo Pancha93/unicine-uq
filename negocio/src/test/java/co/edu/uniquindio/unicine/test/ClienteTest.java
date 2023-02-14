@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.ArrayList;
@@ -75,4 +77,43 @@ public class ClienteTest {
 
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void ObtenerPorCorreo(){
+        Cliente cliente = clienteRepo.obtener("sant@gmail.com");
+        Assertions.assertNotNull(cliente);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void ComporbarAutenticacion(){
+        Cliente cliente = clienteRepo.ComprobarAutenticacion("sant@gmail.com","765");
+        Assertions.assertNotNull(cliente);
+    }
+
+    //sirve para mostrar por ejemplo los 3 primeros clientes
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void Paginador(){
+        List<Cliente> clientes = clienteRepo.findAll(PageRequest.of(0,3)).toList();
+        clientes.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void PaginadorEstado(){
+        List<Cliente> clientes = clienteRepo.ObtenerPorEstado(true,PageRequest.of(0,3));
+        clientes.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void OrdenarRegistros(){
+        List<Cliente> clientes = clienteRepo.findAll(Sort.by("nombre"));
+        clientes.forEach(System.out::println);
+    }
+
+    //se puede combinar el sort con el paginador
+
 }
+
