@@ -113,6 +113,7 @@ public class ClienteTest {
         clientes.forEach(System.out::println);
     }
 
+
     //se puede combinar el sort con el paginador
 
 }
